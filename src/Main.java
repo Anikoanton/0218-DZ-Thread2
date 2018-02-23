@@ -49,6 +49,21 @@ public class Main {
                 при этом нельзя одновременно печатать два документа или сканировать (при печати в консоль
         выводится сообщения "отпечатано 1, 2, 3,... страницы", при сканировании тоже самое только "отсканировано...", вывод в консоль все также с периодом в 50 мс.)
 */	// write your code here
+
+        MFU mfu = new MFU();
+        Thread p1 = new Thread(() -> mfu.printP());
+        Thread p2 = new Thread(() -> mfu.printP());
+
+        p1.start();
+        p2.start();
+
+
+        Thread s1 = new Thread(() -> mfu.scanP());
+        Thread s2 = new Thread(() -> mfu.scanP());
+
+        s1.start();
+        s2.start();
+
     }
 
     synchronized  void writeIntoFile (String filename, String nameThread)
